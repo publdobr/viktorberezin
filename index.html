@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Березин Виктор - Психолог, гештальт-терапевт</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        :root {
+            --bg-main: #fbfbfb;
+            --bg-soft-gray: #f7f7f7;
+            --text-dark: #2d2d2d;
+            --text-light: #555;
+            --accent-blue: #a8d5e2;
+            --accent-blue-dark: #4F869A;
+            --accent-pink: #f9e1e1;
+            --accent-green: #e1f0eb;
+            --accent-gray: #e8e8e8;
+            --cta-color: #3f7cac;
+            --cta-hover-color: #34688f;
+            --border-color: #ddd;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        h1 { font-size: 3rem; margin-bottom: 0.5em; }
+        h2.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
+
+        /* --- Header & Navigation --- */
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(251, 251, 251, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            height: var(--header-height);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            gap: 20px;
+        }
+        
+        .nav-list { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--text-dark); }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-dark);
+        }
+
+        /* --- CTA Button --- */
+        .cta-button {
+            background-color: var(--cta-color);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: var(--cta-hover-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .cta-button.nav-link::after { display: none !important; }
+
+        .mobile-menu-toggle { display: none; cursor: pointer; z-index: 1001; }
+
+        /* --- Hero Section (#home) --- */
+        #home { padding-top: 60px; padding-bottom: 60px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
+        .hero-content h1 { font-size: 3.5rem; }
+        .hero-content .subtitle { font-size: 1.1rem; color: var(--text-light); margin-bottom: 40px; }
+        .hero-content .price-info h2 { font-size: 2rem; margin-bottom: 5px; }
+        .hero-illustrations { display: flex; gap: 20px; margin-top: 40px; }
+        .hero-illustrations .window {
+            flex: 1; height: 180px; background-color: var(--accent-blue);
+            border: 3px solid var(--text-dark); border-radius: 90px 90px 10px 10px;
+            position: relative; overflow: hidden;
+        }
+        .hero-illustrations .cloud { position: absolute; background-color: #fff; border-radius: 50%; }
+        .window:nth-child(1) .cloud1 { top: 40px; left: 10px; width: 60px; height: 30px; }
+        .window:nth-child(1) .cloud2 { top: 55px; left: 30px; width: 80px; height: 40px; }
+        .window:nth-child(3) .cloud1 { top: 60px; right: 15px; width: 70px; height: 35px; }
+        .window:nth-child(3) .cloud2 { top: 75px; right: -20px; width: 90px; height: 45px; }
+        .hero-contact { margin-top: 40px; }
+        .hero-contact p { font-size: 1.2rem; margin-bottom: 15px; }
+        .hero-contact .contact-links { display: flex; align-items: center; gap: 30px; }
+        .hero-contact .contact-link { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; text-decoration: none; color: var(--text-dark); transition: transform 0.3s; }
+        .hero-contact .contact-link:hover { transform: scale(1.05); }
+        .hero-contact .contact-link svg { width: 32px; height: 32px; }
+        .hero-image img { width: 100%; height: auto; border-radius: 12px; object-fit: cover; max-height: 600px; }
+
+        /* --- About Section (#about) --- */
+        .professional-path ul, .work-topics ul { list-style: none; padding-left: 20px; }
+        .professional-path li, .work-topics li { position: relative; margin-bottom: 15px; }
+        .professional-path li::before, .work-topics li::before {
+            content: '•'; position: absolute; left: -20px;
+            color: var(--accent-blue-dark); font-weight: bold;
+        }
+        .work-topics { margin-top: 60px; }
+        .work-topics h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .work-topics p { max-width: 800px; margin: 0 auto 30px auto; text-align: center; }
+        .about-footer { display: flex; align-items: center; justify-content: center; gap: 40px; margin-top: 80px; text-align: left; }
+        .about-footer svg { width: 150px; height: auto; flex-shrink: 0; transition: transform 0.4s ease-out; }
+        .about-footer:hover svg { transform: rotate(5deg) scale(1.05); }
+        .about-footer-text { max-width: 400px; }
+
+        /* --- Approach Section (#approach) --- */
+        .method-text { max-width: 800px; margin: 0 auto 60px auto; text-align: center; }
+        .approach-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+        .card {
+            padding: 30px; border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card-green { background-color: var(--accent-green); }
+        .card-pink { background-color: var(--accent-pink); }
+        .card-gray { background-color: var(--accent-gray); }
+        .understanding-text { max-width: 800px; margin: 0 auto; }
+        .understanding-text h3 { font-size: 1.8rem; margin-bottom: 20px; text-align: center; }
+
+        /* --- Rules Section (Accordion/Spoiler) --- */
+        .faq, .principles { max-width: 800px; margin: 0 auto; }
+        .faq-item { margin-bottom: 5px; border-bottom: 1px solid #eee; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary {
+            font-size: 1.1rem; font-weight: 600;
+            padding: 20px 0; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: color 0.3s;
+        }
+        .faq-item summary:hover { color: var(--cta-color); }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+'; font-size: 1.5rem; font-weight: 400;
+            color: var(--cta-color); transition: transform 0.3s;
+        }
+        .faq-item[open] > summary::after { transform: rotate(45deg); }
+        .faq-content { padding-bottom: 20px; color: var(--text-light); }
+        .principles { margin-top: 80px; }
+        .principles ul { list-style: none; padding-left: 20px; margin-top: 15px; }
+        .principles li { position: relative; margin-bottom: 10px; }
+        .principles li::before { content: '•'; position: absolute; left: -20px; color: var(--accent-blue-dark); }
+        
+        /* --- Contacts Section (#contacts) --- */
+        #contacts { border-bottom: none; } /* No border before CTA section */
+        .contact-grid { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 50px; }
+        .contact-illustration svg { width: 250px; height: auto; margin: 0 auto; display: block; transition: transform 0.4s ease-out; }
+        .contact-grid:hover .contact-illustration svg { transform: translateY(-10px) rotate(-3deg); }
+        .contact-details .contact-row { display: flex; align-items: flex-start; margin-bottom: 20px; font-size: 1.1rem; }
+        .contact-details .label { width: 150px; color: var(--text-light); flex-shrink: 0; }
+        .contact-details .value { font-weight: 500; }
+        .contact-details .value a { color: var(--text-dark); text-decoration: none; position: relative; }
+        .contact-details .value a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            display: block; margin-top: 2px; right: 0;
+            background: var(--text-dark); transition: width 0.3s ease;
+        }
+        .contact-details .value a:hover::after { width: 100%; left: 0; }
+        .contact-social-links { display: flex; flex-direction: column; gap: 10px; }
+
+        /* --- Final CTA Section --- */
+        .cta-section {
+            background-color: var(--accent-green);
+            text-align: center;
+        }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 15px; }
+        .cta-section p { margin-bottom: 30px; font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- Footer --- */
+        .footer { background-color: var(--bg-soft-gray); padding: 40px 0; text-align: center; color: var(--text-light); border-top: 1px solid #eee; }
+        .footer .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+        .footer .social-links a { display: block; }
+        .footer .social-links svg { width: 32px; height: 32px; fill: var(--text-light); transition: fill 0.3s, transform 0.3s; }
+        .footer .social-links a:hover svg { fill: var(--text-dark); transform: scale(1.1); }
+        
+        /* --- Animation on Scroll --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 2.8rem; }
+            h2.section-title { font-size: 2rem; }
+            .approach-cards { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+            .contact-details .contact-row { flex-direction: column; align-items: center; gap: 5px; }
+            .contact-details .label { width: auto; margin-bottom: 5px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-list {
+                position: fixed; top: 0; right: -100%; width: 80%;
+                height: 100vh; background-color: var(--bg-main);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 30px; transition: right 0.4s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                padding: var(--header-height) 20px 20px;
+            }
+            .nav-list.active { right: 0; }
+            .nav-link { font-size: 1.2rem; }
+            .header > .cta-button { display: none; } /* Hide button in nav, show in mobile menu */
+            .nav-list .cta-button { display: inline-block; }
+
+            .mobile-menu-toggle {
+                display: block; width: 30px; height: 22px; position: relative; z-index: 1002;
+            }
+            .mobile-menu-toggle span {
+                display: block; width: 100%; height: 3px; background-color: var(--text-dark);
+                border-radius: 3px; position: absolute; transition: all 0.3s;
+            }
+            .mobile-menu-toggle span:nth-child(1) { top: 0; }
+            .mobile-menu-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+            .mobile-menu-toggle span:nth-child(3) { bottom: 0; }
+            .mobile-menu-toggle.active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+            .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-menu-toggle.active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-image { order: -1; }
+            .hero-content { text-align: center; }
+            .hero-illustrations, .hero-contact .contact-links { justify-content: center; }
+            .about-footer { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Главная</a></li>
+                    <li><a href="#about" class="nav-link">Обо мне</a></li>
+                    <li><a href="#approach" class="nav-link">Подход</a></li>
+                    <li><a href="#rules" class="nav-link">Правила</a></li>
+                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                    <li><a href="#footer" class="nav-link">Пишу</a></li>
+                    <!-- Кнопка для мобильного меню -->
+                    <li class="nav-item-cta"><a href="#contacts" class="nav-link cta-button">Записаться</a></li>
+                </ul>
+            </nav>
+            <a href="#contacts" class="cta-button">Записаться</a>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Секция "Главная" -->
+        <section id="home">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1 class="fade-in-element">Березин Виктор</h1>
+                        <p class="subtitle fade-in-element">психолог, гештальт-терапевт онлайн или очно в Буэнос-Айресе</p>
+                        <div class="price-info fade-in-element" style="transition-delay: 0.1s;">
+                            <h2>Сессия 55 минут</h2>
+                            <h2>Стоимость 65 USD / 6000 ₽</h2>
+                        </div>
+                        <div class="hero-illustrations fade-in-element" style="transition-delay: 0.2s;">
+                            <div class="window"><div class="cloud cloud1"></div><div class="cloud cloud2"></div></div>
+                            <div class="window"></div>
+                            <div class="window"><div class="cloud cloud1"></div><div class="cloud cloud2"></div></div>
+                        </div>
+                        <div class="hero-contact fade-in-element" style="transition-delay: 0.3s;">
+                            <p>для записи пишите в</p>
+                            <div class="contact-links">
+                                <a href="#" class="contact-link"><svg viewBox="0 0 24 24"><path fill="#0088cc" d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.39.2-1.61l15.97-5.85c.73-.27 1.45.16 1.18 1.31l-3.02 14.09c-.33 1.16-1.21 1.43-2.06.86l-4.92-3.57l-2.32 2.2c-.25.24-.47.47-.97.47z"></path></svg><span>Telegram</span></a>
+                                <a href="#" class="contact-link"><svg viewBox="0 0 24 24"><path fill="#25D366" d="M19.11 4.91C17.22 3 14.68 1.98 12.01 2c-5.48.07-9.91 4.54-9.91 10.03c0 1.74.45 3.42 1.28 4.9L2 22l5.25-1.38c1.42.79 3.06 1.21 4.76 1.21c5.48 0 9.91-4.47 9.91-10.03c0-2.67-1.02-5.2-2.9-7.09zM12.01 20.14c-1.55 0-3.04-.42-4.35-1.19l-.31-.18l-3.24.85l.87-3.15l-.2-.32c-.83-1.32-1.27-2.85-1.27-4.43c0-4.52 3.63-8.18 8.11-8.18c2.22 0 4.28.87 5.79 2.39c1.51 1.51 2.38 3.56 2.38 5.78c-.01 4.52-3.64 8.18-8.1 8.18zm4.49-6.18c-.27-.13-1.6-.79-1.85-.88c-.25-.09-.43-.13-.62.13c-.19.26-.7.88-.86 1.06c-.16.18-.32.2-.6.07c-.28-.13-1.18-.43-2.25-1.39c-.83-.75-1.39-1.66-1.55-1.94c-.16-.28-.02-.43.12-.56c.12-.12.27-.31.41-.46c.14-.15.19-.25.28-.42c.1-.17.05-.31-.02-.44c-.07-.13-.62-1.49-.85-2.04c-.23-.55-.46-.48-.62-.48c-.16 0-.34-.04-.52-.04c-.18 0-.47.07-.72.35c-.25.28-.96.93-.96 2.26c0 1.33.98 2.62 1.12 2.8c.14.18 1.92 2.96 4.66 4.13c.64.27 1.14.43 1.53.55c.6.18 1.15.15 1.58.09c.48-.07 1.6-.65 1.83-1.28c.22-.63.22-1.17.15-1.28c-.07-.12-.25-.19-.52-.32z"></path></svg><span>Whatsapp</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image fade-in-element">
+                        <img src="img/viktor-photo.jpg" alt="Фото Виктора Березина">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Обо мне" -->
+        <section id="about">
+            <div class="container">
+                <div class="professional-path">
+                    <h2 class="section-title fade-in-element">Профессиональный путь</h2>
+                    <ul class="fade-in-element">
+                        <li>2009 начал обучение терапии в Московском Гештальт Институте (МГИ).</li>
+                        <li>2013 году я получил сертификацию от Общества практикующих психологов "Гештальт-подход" и начал частную практику.</li>
+                        <li>2015 году я присоединился к Благотворительному фонду «Твоя территория», где занимался консультированием и управлением направления e-mail консультаций.</li>
+                        <li>2017 изучал психоаналитическое и психологическое консультирование в Институте Практической Психологии НИУ Высшая школа Экономики.</li>
+                        <li>2020 году я успешно завершил последний обучающий курс повышения квалификации МГИ (3 ступень) и Специализацию "Экзистенциальное измерение гештальт-терапии".</li>
+                        <li>2022 году я с семьей уехал в Буэнос-Айрес и начал строить профессиональное сообщество психологов в Аргентине.</li>
+                    </ul>
+                </div>
+                
+                <div class="work-topics">
+                    <h3 class="fade-in-element">Темы, с которыми я работаю:</h3>
+                    <p class="fade-in-element">Часто бывает так, что в жизни возникают различные проблемы и трудности, которые могут сильно повлиять на наше настроение и психическое состояние. Ниже перечислены некоторые из наиболее распространенных проблем, с которыми я работаю:</p>
+                    <ul class="fade-in-element">
+                        <li><strong>Депрессивные состояния:</strong> ощущение, что вокруг одно дерьмо, апатия, раздражительность, недовольство собой и миром в целом, постоянная усталость и отсутствие инициативы.</li>
+                        <li><strong>Сложности в отношениях:</strong> когда кажется, что пора что-то менять, но не понятно, что и как, невозможность понять другого, завышенные или заниженные ожидания и требования к себе и партнеру.</li>
+                        <li><strong>Проблемы самооценки:</strong> подавляющие чувства собственной никчемности, одиночество, невозможность самореализации, отсутствие понимания и принятия себя.</li>
+                        <li><strong>Жизненная позиция:</strong> отсутствие мотивации к развитию, замкнутость, слабая социальная адаптация и совсем мало навыков общения, отсутствие собственного, выработанного отношения к жизни.</li>
+                        <li><strong>Эмоциональные проблемы:</strong> чувство, что живешь, но вроде как и неживой, "эмоциональные качели", узкий спектр эмоций (только радость или только грусть), непонимание, как с ними обходиться, что это и зачем они нужны.</li>
+                    </ul>
+                    <p class="fade-in-element" style="margin-top: 30px;">Если у вас возникли какие-то из этих проблем, не стесняйтесь обратиться за помощью. Я готов помочь вам преодолеть трудности и найти новый баланс в жизни.</p>
+                </div>
+
+                <div class="about-footer fade-in-element">
+                    <svg viewBox="0 0 100 125" class="character-illustration"><path fill="#FFDDC1" d="M50 70C30.7 70 15 85.7 15 105v15h70v-15c0-19.3-15.7-35-35-35z"/><path fill="#CDE8F4" d="M68.5 72.5c-9.9 0-18.5-8.1-18.5-18s8.6-18.5 18.5-18.5S87 44.6 87 54.5s-8.1 18-18.5 18z"/><path fill="#4A4A4A" d="M50 20C27.9 20 10 37.9 10 60s17.9 40 40 40 40-17.9 40-40S72.1 20 50 20zm0 75c-19.3 0-35-15.7-35-35s15.7-35 35-35 35 15.7 35 35-15.7 35-35 35z"/><path fill="#FFD700" d="M50 0C33.4 0 20 13.4 20 30s13.4 30 30 30 30-13.4 30-30S66.6 0 50 0zm0 55c-13.8 0-25-11.2-25-25S36.2 5 50 5s25 11.2 25 25-11.2 25-25 25z"/><path fill="#FFF48C" d="M50 10c-11 0-20 9-20 20s9 20 20 20 20-9 20-20-9-20-20-20z"/></svg>
+                    <div class="about-footer-text"><p><strong>Чтобы узнать больше обо мне как о человеке, загляните в раздел "Пишу" или соц.сети</strong></p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Подход" -->
+        <section id="approach">
+            <div class="container">
+                <h2 class="section-title fade-in-element">Метод</h2>
+                <div class="method-text fade-in-element">
+                    <p>Моя практика основывается на гештальт-терапии - направлении практической психологии, которое уделяет особое внимание моменту «Здесь и Сейчас». Хотя работа с историей и опытом человека также является важной частью моей работы, я считаю, что для изменений необходимо в первую очередь обратиться к конкретной личности в ее текущем состоянии.</p>
+                    <p>Современный гештальт-подход представляет собой одну из ветвей психоанализа и тесно связан с такими направлениями, как арт-терапия, экзистенциальный анализ и в целом относится к гуманистическому подходу в психологии. Я не ограничиваюсь только этой школой, так как я считаю, что разные психологические учения дополняют друг друга и позволяют быть более гибким в решении вопросов, с которыми мы сталкиваемся.</p>
+                </div>
+                <div class="approach-cards">
+                    <div class="card card-green fade-in-element">
+                        <h3>Это помогает</h3><p>Процесс, который позволяет понять и изменить отношение к себе, к другим и еще к миллионам окружающих нас вещей, чтобы жить стало чуточку комфортнее и веселее. И никакой магии.</p>
+                    </div>
+                    <div class="card card-pink fade-in-element" style="transition-delay: 0.1s;">
+                        <h3>Это услуга</h3><p>Психолог — это человек, который помогает решать вопросы в своей профессиональной области, как адвокат или слесарь. Это естественно — обращаться к специалисту, когда мы чего-то не знаем или что-то не получается.</p>
+                    </div>
+                    <div class="card card-gray fade-in-element" style="transition-delay: 0.2s;">
+                        <h3>Это процесс</h3><p>В психологической работе есть моменты радости и откровений и есть моменты полного разочарования и боли. Пройти это и научиться жить по-новому чертовски трудно, но это стоит того.</p>
+                    </div>
+                </div>
+                <div class="understanding-text fade-in-element">
+                    <h3>Важно понимать</h3>
+                    <p>Существует огромное количество курсов, интенсивов, практик, которые обещают изменить вашу жизнь за несколько дней. Это замечательно и многим это действительно помогает. Я поддерживаю такие мероприятия, если они помогают людям, но есть один большой недостаток: мотивация, которую они дают, быстро иссякает, и мы возвращаемся к привычным «рельсам».</p>
+                    <p>Важное отличие психотерапии от тренингов и консультаций заключается в том, что она работает не только с последствиями сложностей, но и с причинами, которые сформировали вас и вашу жизнь так, что эти сложности появились. Психотерапия помогает решать эти проблемы и научиться управлять ими.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Правила" -->
+        <section id="rules">
+            <div class="container">
+                <div class="faq">
+                    <h2 class="section-title fade-in-element">FAQ</h2>
+                    <details class="faq-item fade-in-element"><summary>Длительность приема?</summary><div class="faq-content"><p>Стандартный прием длится 55 минут. Для парных консультаций — 1,5-2 часа.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Присутствие иных людей на встрече?</summary><div class="faq-content"><p>Все, что происходит на сессии, конфиденциально. Присутствие третьих лиц не допускается без предварительной договоренности.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Вы поможете мне решить мою проблему?</summary><div class="faq-content"><p>Я не даю готовых советов. Вместо этого, я помогу вам разобраться в ситуации, чтобы вы сами приняли лучшее для себя решение.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Что если я отменю встречу и не предупрежу?</summary><div class="faq-content"><p>Для отмены встречи необходимо предупредить меня за 24 часа. В противном случае пропущенная сессия оплачивается в полном размере.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Сколько нужно встреч?</summary><div class="faq-content"><p>Точного срока нет. Мы будем работать вместе и определим необходимое количество встреч для достижения вашего результата.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Вы дадите мне лекарства?</summary><div class="faq-content"><p>Нет, я не назначаю лекарства, это задача врача-психиатра. Я советую воздержаться от самолечения.</p></div></details>
+                    <details class="faq-item fade-in-element"><summary>Психолог или психиатр, какая разница?</summary><div class="faq-content"><p><strong>Психиатр</strong> - врач, который может назначать лекарства. <strong>Психолог</strong> работает с внутренним миром, эмоциями и отношениями, используя методы разговорной терапии.</p></div></details>
+                </div>
+                <div class="principles">
+                    <h2 class="section-title fade-in-element">Правила и принципы</h2>
+                    <details class="faq-item fade-in-element"><summary>Общее</summary><div class="faq-content"><ul><li>Рекомендуемая частота встреч - 1 раз в неделю.</li><li>Первые 5 сессий проходят без перерывов для формирования доверия.</li><li>Очень важно не опаздывать на сессии, чтобы не сокращать время работы.</li></ul></div></details>
+                    <details class="faq-item fade-in-element"><summary>Сотрудничество в работе</summary><div class="faq-content"><ul><li>Качество и глубина работы зависит от вашей готовности к диалогу.</li><li>Сессия не сможет состояться, если вы находитесь под действием психоактивных веществ.</li><li>Я придерживаюсь этического кодекса и гарантирую конфиденциальность.</li></ul></div></details>
+                    <details class="faq-item fade-in-element"><summary>Правила оплаты</summary><div class="faq-content"><ul><li>Оплата производится по окончании встречи. Первая сессия — по предоплате.</li><li>Отмена без оплаты возможна за 24 часа до начала.</li><li>Неявка или отмена менее чем за 24 часа оплачивается в полном размере.</li></ul></div></details>
+                    <details class="faq-item fade-in-element"><summary>Отношения</summary><div class="faq-content"><ul><li>Терапевтические отношения являются строго профессиональными. Дружеские, любовные или деловые контакты исключены.</li><li>Завершение терапии — важный процесс, который мы обсуждаем на отдельной встрече.</li></ul></div></details>
+                    <details class="faq-item fade-in-element"><summary>Работа вне сессий</summary><div class="faq-content"><ul><li>Контакты вне сессий (почта, мессенджеры) используются только для организационных вопросов (изменение графика, отправка материалов).</li></ul></div></details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция CTA -->
+        <section class="cta-section">
+            <div class="container fade-in-element">
+                <h2>Готовы сделать первый шаг?</h2>
+                <p>Запишитесь на первую сессию, чтобы начать путь к изменениям и найти внутренний баланс.</p>
+                <a href="#contacts" class="cta-button">Записаться на сессию</a>
+            </div>
+        </section>
+        
+        <!-- Секция "Контакты" -->
+        <section id="contacts">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-illustration fade-in-element">
+                        <svg viewBox="0 0 100 100"><path d="M63.2,76.9c-0.6,0-1.2-0.2-1.7-0.6L46.3,64.8c-2.9-2.4-4.6-6-4.6-9.8c0-0.9,0.1-1.8,0.3-2.6l4.6-21.3 c0.5-2.2,2.4-3.7,4.6-3.7h0.1c2,0,3.8,1.3,4.5,3.2l7.1,20.4c0.5,1.5,0.2,3.1-0.8,4.3l-2.6,3c-0.6,0.7-0.5,1.7,0.2,2.3 c2.1,1.9,4.6,3,7.2,3.2c0.9,0.1,1.6,0.8,1.6,1.7v10.5C82.4,74.7,78.2,76.9,63.2,76.9z" fill="#f3c4d7"></path><path d="M49.8,20.1c-10.4,0-18.9,8.4-18.9,18.9c0,10.4,8.4,18.9,18.9,18.9s18.9-8.4,18.9-18.9 C68.7,28.5,60.2,20.1,49.8,20.1z" fill="#f9e486"></path><path d="M81.7,39c0,6-14.3,10.8-31.9,10.8S17.9,45,17.9,39s14.3-10.8,31.9-10.8S81.7,33,81.7,39z" fill="#fff"></path><path d="M49.8,12.2c-12.8,0-23.2,4.9-23.2,11c0,0.8,0.1,1.6,0.2,2.3c1.7-3.9,7.5-6.8,14.5-8 c-0.1,0.2-0.2,0.4-0.2,0.6c0,2.1,5.1,3.8,11.4,3.8s11.4-1.7,11.4-3.8c0-0.2-0.1-0.4-0.2-0.6c7,1.1,12.8,4.1,14.5,8 c0.1-0.8,0.2-1.5,0.2-2.3C73,17.1,62.6,12.2,49.8,12.2z" fill="#4a90e2"></path></svg>
+                    </div>
+                    <div class="contact-details fade-in-element">
+                        <div class="contact-row"><span class="label">имя</span><span class="value">Березин Виктор</span></div>
+                        <div class="contact-row"><span class="label">эл. почта</span><span class="value"><a href="mailto:bvifr@yandex.ru">bvifr@yandex.ru</a></span></div>
+                        <div class="contact-row"><span class="label">телефон</span><div class="contact-social-links"><span class="value"><a href="tel:+79998535733">+79998535733</a></span><span class="value">Telegram</span><span class="value">WhatsApp</span></div></div>
+                        <div class="contact-row"><span class="label">аккаунты соцсетей</span><div class="contact-social-links"><span class="value"><a href="#" target="_blank">Instagram</a></span><span class="value"><a href="#" target="_blank">Facebook</a></span><span class="value"><a href="#" target="_blank">VK</a></span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" target="_blank" title="VK"><svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .937-.281.937-.843v-4.18h1.406c.553 0 .78-.204.904-.624.125-.42.047-.796-.281-1.124l-3.32-3.266c-.47-.469-.99-.469-1.46 0l-3.32 3.266c-.328.328-.406.703-.281 1.124.125.42.351.624.904.624h1.406v3.438c0 .2.023.36.07.48.047.12.148.21.305.27.156.06.398.09.726.09h.75zm-1.168-17.988c-4.968 0-8.994 4.026-8.994 8.994s4.026 8.994 8.994 8.994 8.994-4.026 8.994-8.994-4.026-8.994-8.994-8.994zm0 17.25c-4.555 0-8.25-3.695-8.25-8.25s3.695-8.25 8.25-8.25 8.25 3.695 8.25 8.25-3.695 8.25-8.25 8.25z"/></svg></a>
+                <a href="#" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24H12.82v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.33 0 2.48.1 2.82.14v3.24h-1.92c-1.5 0-1.8.71-1.8 1.77v2.31h3.59l-.47 3.62h-3.12V24h5.68c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+                <a href="#" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.238 0-3.59.012-4.84.069-2.31.105-3.48 1.25-3.585 3.585-.057 1.25-.068 1.605-.068 4.84s.011 3.59.068 4.84c.105 2.335 1.275 3.48 3.585 3.585 1.25.057 1.602.068 4.84.068s3.59-.011 4.84-.068c2.31-.105 3.48-1.25 3.585-3.585.057-1.25.068-1.605.068-4.84s-.011-3.59-.068-4.84c-.105-2.335-1.275-3.48-3.585-3.585-1.25-.057-1.602-.068-4.84-.068zm0 5.838c-1.913 0-3.465 1.552-3.465 3.465s1.552 3.465 3.465 3.465 3.465-1.552 3.465-3.465-1.552-3.465-3.465-3.465zm0 5.731c-1.254 0-2.266-1.012-2.266-2.266s1.012-2.266 2.266-2.266 2.266 1.012 2.266 2.266-1.012 2.266-2.266 2.266zm4.61-6.736c-.533 0-.965.432-.965.965s.432.965.965.965.965-.432.965-.965-.432-.965-.965-.965z"/></svg></a>
+            </div>
+            <p>&copy; 2024 Березин Виктор. Все права защищены.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navList = document.querySelector('.nav-list');
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navList.classList.toggle('active');
+            });
+
+            // --- Close mobile menu on link click ---
+            document.querySelectorAll('.nav-list a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navList.classList.contains('active')) {
+                        menuToggle.classList.remove('active');
+                        navList.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Intersection Observer for animations and active nav links ---
+            const sections = document.querySelectorAll('section, footer');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Animation on scroll
+                    if (entry.target.classList.contains('fade-in-element') && entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: unobserve after animation to save resources
+                        // observer.unobserve(entry.target); 
+                    }
+                    
+                    // Active nav link on scroll
+                    if (sections.length > 0 && navLinks.length > 0 && entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                         const id = entry.target.getAttribute('id');
+                         navLinks.forEach(link => {
+                             link.classList.remove('active');
+                             if (link.getAttribute('href') === `#${id}`) {
+                                 link.classList.add('active');
+                             }
+                         });
+                    }
+                });
+            }, { rootMargin: '0px 0px -50% 0px', threshold: [0, 0.5, 1]}); // Tweak margins/threshold for nav links
+
+            fadeElements.forEach(el => observer.observe(el));
+            sections.forEach(section => observer.observe(section));
+
+            // Set initial active link for home section
+            const homeLink = document.querySelector('a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
